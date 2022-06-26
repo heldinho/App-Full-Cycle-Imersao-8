@@ -2,7 +2,7 @@ import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 
 export default function Card(props) {
-  const { title, date, image } = props;
+  const { title, date, image, video, fnShowVideo } = props;
   return (
     <TouchableOpacity
       style={{
@@ -17,6 +17,7 @@ export default function Card(props) {
         alignSelf: "center",
       }}
       activeOpacity={0.8}
+      onPress={() => fnShowVideo({ url: video })}
     >
       <View>
         <Image
