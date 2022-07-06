@@ -1,6 +1,6 @@
-import * as React from "react";
-import { View, StyleSheet, Button } from "react-native";
-import { Video, AVPlaybackStatus } from "expo-av";
+import * as React from 'react';
+import { View, StyleSheet, Button } from 'react-native';
+import { Video, ResizeMode } from 'expo-av';
 
 export default function Vvideo(props) {
   const { vUrl, fnShowVideo } = props;
@@ -15,11 +15,12 @@ export default function Vvideo(props) {
         useNativeControls
         resizeMode="contain"
         isLooping
-        onPlaybackStatusUpdate={(status) => setStatus(() => status)}
+        onPlaybackStatusUpdate={status => setStatus(() => status)}
       />
       <View style={styles.buttons}>
         <Button
-          title={status.isPlaying ? "Pause" : "Play"}
+          title={status.isPlaying ? 'Pause' : 'Play'}
+          color="#222"
           onPress={() =>
             status.isPlaying
               ? video.current.pauseAsync()
@@ -27,7 +28,8 @@ export default function Vvideo(props) {
           }
         />
         <Button
-          title={"Close"}
+          title={'Close'}
+          color="#222"
           onPress={() => {
             video.current.pauseAsync();
             fnShowVideo(false);
@@ -41,17 +43,20 @@ export default function Vvideo(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    backgroundColor: "#ecf0f1",
+    justifyContent: 'center',
+    backgroundColor: '#000',
   },
   video: {
-    alignSelf: "center",
-    width: 320,
-    height: 200,
+    alignSelf: 'center',
+    width: '100%',
+    height: '30%',
+    resizeMode: ResizeMode.CONTAIN,
+    marginBottom: 20,
   },
   buttons: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 20,
   },
 });
